@@ -1,0 +1,19 @@
+{
+  "name": "worklog",
+  "version": "0.1.0",
+  "description": "Work time tracking tool",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "worklog",
+    "time",
+    "tracking"
+  ],
+  "author": "Wasabi Developer",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "moment": "^2.24.0"
+  }
+}

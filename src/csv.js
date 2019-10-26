@@ -44,7 +44,9 @@ module.exports = class CSV {
                 ...newRows,
                 currentRow.reduce((newCells, currentCell, cellIndex) => ({
                         ...newCells,
-                        [headers[cellIndex].toLowerCase()]: currentCell
+                        ...headers[cellIndex] ? { 
+                            [headers[cellIndex].toLowerCase()]: currentCell
+                        } : {}
                 }), {})
             ]
         ,[]);

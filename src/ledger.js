@@ -1,11 +1,16 @@
 "use strict";
 
-const { round } = require('./utility');
+const { round, iteratableObject } = require('./utility');
 
 const Accounting = require('./accounting');
 
 
 module.exports = class Ledger {
+    /**
+     * @param {string} name 
+     * @param {AccountingRow[]} dict
+     * @returns {Ledger}
+     */
     static createFromDict(name, dict) {
         return new Ledger(
             name,
@@ -34,22 +39,28 @@ module.exports = class Ledger {
         return this.total / this.days;
     }
 
-    get dailyReport() {
-        return Object.entries(this.accountings.reduce(
-                (days, accounting) => ({
-                        ...days,
-                        [accounting.date]: [
-                            ...(days[accounting.date] || []),
-                            accounting.hours
-                        ]
-                    }),
-                    {}
-                )
-            )
-            .map(([day, hours]) => [
-                day, 
-                hours.reduce((sum, row) => (sum + row), 0),
-            ])
-            .map(([day, hours]) => [day, round(hours) ]);
+    get groupByDay() {
+        return this.accountings.reduce(
+            (days, accounting) => ({
+                ...days,
+                [accounting.date]: [
+                    ...(days[accounting.date] || []),
+                    accounting.hours
+                ]
+            }),
+            {}
+        );
+    }
+
+    get hoursByDay() {
+        return iteratableObject(
+            this.groupByDay, 
+            entries => entries
+                .map(([day, hourEntries]) => [
+                    day, 
+                    hourEntries.reduce((sum, row) => (sum + row), 0),
+                ])
+                .map(([day, hours]) => [day, round(hours) ])
+        );
     }
 }

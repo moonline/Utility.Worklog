@@ -7,6 +7,8 @@ const Config = require('./src/config');
 const CSV = require('./src/csv');
 const File = require('./src/file');
 const Ledger = require('./src/ledger');
+const Calendar = require('./src/calendar');
+const Workbook = require('./src/workbook');
 
 
 const [nodePath, scriptPath, worklogPath] = process.argv;
@@ -16,7 +18,6 @@ if (!worklogFile.exists) {
 }
 
 const applicationConfig = Config.createFromPath('.worklog/config.json', 'application');
-console.log(applicationConfig);
 
 const worklogCalendarPath = Path.join(
     Path.dirname(worklogFile.relativePath),
@@ -30,11 +31,20 @@ const worklogConfigPath = Path.join(
 );
 const worklogConfig = Config.createFromPath(worklogConfigPath, 'worklog');
 
-const csv = new CSV(worklogFile);
-const ledger = Ledger.createFromDict('work', csv.rows);
+const calendarCsv = new CSV(calendarFile);
+const calendar = Calendar.createFromDict(calendarCsv.rows, worklogConfig.configContent);
 
-console.log(
-    ledger.dailyReport,
+const worklogCsv = new CSV(worklogFile);
+const ledger = Ledger.createFromDict('work', worklogCsv.rows);
+
+const workbook = new Workbook(calendar, [ledger]);
+
+console.log(workbook.dailyLog);
+console.log(workbook.statistics);
+//workbook.calendarByDay;
+
+/*console.log(
+    ledger.hoursByDay,
     ledger.total,
     ledger.hoursPerDay
-);
+);*/
