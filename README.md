@@ -1,15 +1,22 @@
 # Utility.Worklog
 
+> Track your working hours, spent on projects, only with a text editor.
+
+You can track your working hours and public holidays in csv files and calculate your working hour balance with this tool. This allows you to easily version your worklog by git or edit syncronized worklog files on your phone by a simple text editor.
+
+To generate the worklog summary nodejs is required.
+
+
 ## Installation
 
-1. Install Node
-2. Install yarn
+1. Install [Node.js](https://nodejs.org/en/)
+2. Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 3. Clone source
 4. Install dependencies `yarn install`
 
 ## Usage
 
-### Setup
+### Example setup
 
 ~/Documents/Admin/2019-worklog.csv:
 ```csv
