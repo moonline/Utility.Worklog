@@ -11,8 +11,12 @@ To generate the worklog summary nodejs is required.
 
 1. Install [Node.js](https://nodejs.org/en/)
 2. Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
-3. Clone source
-4. Install dependencies `yarn install`
+3. [Download & unzip latest release](https://github.com/moonline/Utility.Worklog/releases) or [Clone source](https://github.com/moonline/Utility.Worklog/archive/master.zip)
+4. Install dependencies 
+   ```sh
+   cd release-x.y
+   yarn install
+   ```
 
 ## Usage
 
