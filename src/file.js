@@ -11,11 +11,10 @@ module.exports = class File {
     }
 
     /**
-     * @param {string} relativePath Path relative to user directory
+     * @param {string} path Path relative to user directory
      */
-    constructor(relativePath = '') {
-        this.relativePath = relativePath;
-        this.absolutePath = Path.join(OS.homedir(), this.relativePath);
+    constructor(path = '') {
+        this.path = path;
         try {
             this.content = this.exists
                 ? FS.readFileSync(this.absolutePath, 'utf8')
@@ -24,6 +23,11 @@ module.exports = class File {
             this.content = '';
             throw new Error(`Can not read file "${this.absolutePath}"!`)
         }
+    }
+
+    set path(path) {
+	this.relativePath = path;
+        this.absolutePath = FS.existsSync(path) ? Path.resolve(path) : Path.join(OS.homedir(), path);
     }
     
     get exists() {
