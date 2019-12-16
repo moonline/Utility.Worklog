@@ -17,6 +17,10 @@ To generate the worklog summary nodejs is required.
    cd release-x.y
    yarn install
    ```
+5. Copy `worklog.desktop` to `~/.local/share/applications/worklog.desktop` and change the path for the worklog utility and the worklog csv file in the following line:
+```bash
+Exec=gnome-terminal -x bash -c "node ~/Utility.Worklog/main.js ~/Documents/2019-worklog.csv; bash"
+```
 
 ## Usage
 
