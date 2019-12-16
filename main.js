@@ -41,10 +41,3 @@ const workbook = new Workbook(calendar, [ledger]);
 
 console.log(workbook.dailyLog);
 console.log(workbook.statistics);
-//workbook.calendarByDay;
-
-/*console.log(
-    ledger.hoursByDay,
-    ledger.total,
-    ledger.hoursPerDay
-);*/

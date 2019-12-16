@@ -3,6 +3,10 @@
 const { round, iteratableObject } = require('./utility');
 
 
+const isNotWeekendWithoutMovement = ([dayKey, dayEntry]) => 
+    !(dayEntry.debt === 0 && dayEntry.hours === 0 && dayEntry.type === 'Weekend')
+
+
 module.exports = class Workbook {
     constructor(calendar, ledgers) {
         this.calendar = calendar;
@@ -41,9 +45,7 @@ module.exports = class Workbook {
         return iteratableObject(
             this.hoursByDay,
             entries => entries
-                .filter(([dayKey, dayEntry]) => 
-                    !(dayEntry.debt === 0 && dayEntry.hours === 0)
-                )
+                .filter(isNotWeekendWithoutMovement)
                 .map(([dayKey, dayEntry]) => ([dayKey, [
                     dayEntry.debt,
                     dayEntry.hours,
