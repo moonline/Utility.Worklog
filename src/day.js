@@ -94,7 +94,7 @@ module.exports = class Day {
     }
 
     get workingHoursDebt() {
-        return this.isWorkday
+        return this.isWorkday || this.quantity < 1
             ? this.config.workingHoursPerDay * this.quantity
             : 0;
     }
