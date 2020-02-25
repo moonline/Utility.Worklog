@@ -89,6 +89,10 @@ module.exports = class Day {
         return this.date.format('dddd');
     }
 
+    get weekNumber() {
+        return this.date.isoWeek();
+    }
+
     get isWorkday() {
         return Boolean(this.type === "Workday");
     }

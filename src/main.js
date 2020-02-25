@@ -2,6 +2,8 @@
 
 const Path = require('path');
 
+const { renderTemplate } = require('./utility/render');
+
 const Config = require('./model/config');
 const CSV = require('./model/csv');
 const File = require('./model/file');
@@ -40,3 +42,8 @@ const workbook = new Workbook(calendar, [ledger]);
 
 console.log(workbook.dailyLog);
 console.log(workbook.statistics);
+
+renderTemplate(
+    Path.join(__dirname,'./templates/console.hbs.html'),
+    { weeks: workbook.weeklyLog, statistics: workbook.statistics }
+);
