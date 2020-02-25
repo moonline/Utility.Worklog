@@ -44,7 +44,8 @@ Day,Quantity,Type
 ```json
 {
     "workingHoursPerDay": 8,
-    "startDay": "01/01/19"
+    "startDay": "01/01/19",
+    "endDay": "31/01/19"
 }
 ```
 

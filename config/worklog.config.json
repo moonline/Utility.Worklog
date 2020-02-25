@@ -1,6 +1,3 @@
 {
-    "workingHoursPerDay": 8,
-    "vacationExtraHoursPerDay": 0.1,
-    "workingDaysPerYear": 220,
-    "workdays": ["Workday", "Holiday"]
+    "workingHoursPerDay": 8
 }

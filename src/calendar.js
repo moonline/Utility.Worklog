@@ -8,7 +8,8 @@ const Day = require('./day');
 /**
  * Raw day
  * @typedef {Object} CalendarConfig
- * @property {string} startDay - Beginning of calendar in format "dd/mm/yy"
+ * @property {string} [startDay] - First day of calendar in format "dd/mm/yy"
+ * @property {string} [endDay] - Last day of calendar in format "dd/mm/yy"
  */
 
 /**
@@ -18,10 +19,12 @@ const Day = require('./day');
  * @returns {Iterator}
  */
 function* makeDateRangeIterator(startDate = moment().startOf('year'), endDate = moment()) {
-    let currentDay = moment(startDate);
-    while (currentDay.isBefore(endDate)) {
+    for (
+        let currentDay = moment(startDate); 
+        currentDay.isBefore(endDate) || currentDay.isSame(endDate);
+        currentDay.add(1,'days')
+    ) {
         yield moment(currentDay);
-        currentDay.add(1,'days');
     }
 }
 
@@ -40,7 +43,10 @@ module.exports = class Calendar {
             {}
         );
         return new Calendar(
-            Calendar.daysList(Day.parseMoment(config.startDay)).map(day => {
+            Calendar.daysList(
+                Day.parseMoment(config.startDay) || undefined,
+                Day.parseMoment(config.endDay) || undefined
+            ).map(day => {
                 const dayKey = Day.dateKey(day);
                 return (dayKey in daysDict)
                     ? daysDict[dayKey]
@@ -53,8 +59,8 @@ module.exports = class Calendar {
     /**
      * @param {moment} startDate 
      */
-    static daysList(startDate) {
-        return Array.from(makeDateRangeIterator(startDate));
+    static daysList(startDate, endDate) {
+        return Array.from(makeDateRangeIterator(startDate, endDate));
     }
 
     /**
