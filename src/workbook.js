@@ -64,19 +64,15 @@ module.exports = class Workbook {
             ));
     }
 
-    get hoursPerDay() {
-        return round(this.totalHours / this.numberOfWorkdays)
+    get dayTypesCount() {
+        return Object.entries(this.hoursByDay)
+            .map(([dayKey, dayEntry]) => dayEntry.type)
+            .reduce((dayTypesCount, currentDayType) => ({
+                    ...dayTypesCount,
+                    [currentDayType]: (dayTypesCount[currentDayType] || 0)+1
+            }), {})
     }
     
-    get numberOfWorkdays() {
-        return Object.entries(this.hoursByDay)
-            .filter(([dayKey, dayEntry]) => 
-                dayEntry.type === 'Workday'
-            )
-            .length
-
-    }
-
     get totalHours() {
         return round(Object.entries(this.hoursByDay)
             .reduce((sum, [dayKey, dayEntry]) => 
@@ -88,8 +84,7 @@ module.exports = class Workbook {
     get statistics() {
         return {
             balance: this.balance,
-            workDays: this.numberOfWorkdays,
-            dailyHours: this.hoursPerDay
+            dayTypes: this.dayTypesCount
         }
     }
 }
