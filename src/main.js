@@ -1,14 +1,13 @@
 "use strict";
 
 const Path = require('path');
-const OS = require('os');
 
-const Config = require('./src/config');
-const CSV = require('./src/csv');
-const File = require('./src/file');
-const Ledger = require('./src/ledger');
-const Calendar = require('./src/calendar');
-const Workbook = require('./src/workbook');
+const Config = require('./model/config');
+const CSV = require('./model/csv');
+const File = require('./model/file');
+const Ledger = require('./model/ledger');
+const Calendar = require('./model/calendar');
+const Workbook = require('./model/workbook');
 
 
 const [nodePath, scriptPath, worklogPath] = process.argv;

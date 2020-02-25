@@ -1,6 +1,6 @@
 "use strict";
 
-const { round, iteratableObject } = require('./utility');
+const { round, iteratableObject } = require('../utility/utility');
 
 const Accounting = require('./accounting');
 
