@@ -14,7 +14,7 @@
   "author": "Wasabi Developer",
   "license": "Apache-2.0",
   "dependencies": {
-    "handlebars": "^4.7.3",
+    "handlebars": "^4.7.7",
     "moment": "^2.24.0",
     "open": "^7.0.2",
     "tmp": "^0.1.0"
