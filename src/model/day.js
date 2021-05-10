@@ -3,7 +3,7 @@
 const moment = require('moment');
 
 /**
- * @typedef {"Public holiday"|"Workday"|"Weekend"|"Sick day"} DayType
+ * @typedef {"Public holiday"|"Workday"|"Weekend"|"Sick day"|"Unpaid leave"} DayType
  */
 
 /**
