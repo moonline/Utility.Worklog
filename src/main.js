@@ -2,8 +2,6 @@
 
 const Path = require('path');
 
-const { renderTemplate } = require('./utility/render');
-
 const Config = require('./model/config');
 const CSV = require('./model/csv');
 const File = require('./model/file');
@@ -11,39 +9,44 @@ const Ledger = require('./model/ledger');
 const Calendar = require('./model/calendar');
 const Workbook = require('./model/workbook');
 
+const { renderTemplate } = require('./utility/render');
 
-const [nodePath, scriptPath, worklogPath] = process.argv;
-const worklogFile = new File(worklogPath);
-if (!worklogFile.exists) {
-    throw new Error(`Worklog "${absoluteWorklogPath}" not existing`);
-}
 
-const applicationConfig = Config.createFromPath('.worklog/config.json', 'application');
+module.exports = {
+    main: (worklogPath) => {
+        const worklogFile = new File(worklogPath);
+        if (!worklogFile.exists) {
+            throw new Error(`Worklog "${absoluteWorklogPath}" not existing`);
+        }
 
-const worklogCalendarPath = Path.join(
-    Path.dirname(worklogFile.relativePath),
-    File.pathWithoutExtension(worklogFile.relativePath) + applicationConfig.config.worklogCalendarExtension
-);
-const calendarFile = new File(worklogCalendarPath);
+        const applicationConfig = Config.createFromPath('.worklog/config.json', 'application');
 
-const worklogConfigPath = Path.join(
-    Path.dirname(worklogFile.relativePath),
-    File.pathWithoutExtension(worklogFile.relativePath) + applicationConfig.config.worklogConfigExtension
-);
-const worklogConfig = Config.createFromPath(worklogConfigPath, 'worklog');
+        const worklogCalendarPath = Path.join(
+            Path.dirname(worklogFile.relativePath),
+            File.pathWithoutExtension(worklogFile.relativePath) + applicationConfig.config.worklogCalendarExtension
+        );
+        const calendarFile = new File(worklogCalendarPath);
 
-const calendarCsv = new CSV(calendarFile);
-const calendar = Calendar.createFromDict(calendarCsv.rows, worklogConfig.configContent);
+        const worklogConfigPath = Path.join(
+            Path.dirname(worklogFile.relativePath),
+            File.pathWithoutExtension(worklogFile.relativePath) + applicationConfig.config.worklogConfigExtension
+        );
+        const worklogConfig = Config.createFromPath(worklogConfigPath, 'worklog');
 
-const worklogCsv = new CSV(worklogFile);
-const ledger = Ledger.createFromDict('work', worklogCsv.rows);
+        const calendarCsv = new CSV(calendarFile);
+        const calendar = Calendar.createFromDict(calendarCsv.rows, worklogConfig.configContent);
 
-const workbook = new Workbook(calendar, [ledger]);
+        const worklogCsv = new CSV(worklogFile);
+        const ledger = Ledger.createFromDict('work', worklogCsv.rows);
 
-console.log(workbook.dailyLog);
-console.log(workbook.statistics);
+        const workbook = new Workbook(calendar, [ledger]);
 
-renderTemplate(
-    Path.join(__dirname,'./templates/console.hbs.html'),
-    { weeks: workbook.weeklyLog, statistics: workbook.statistics }
-);
+        //console.log(workbook.dailyLog);
+        //console.log(workbook.statistics);
+
+        return renderTemplate(
+            Path.join(__dirname, 'templates/console.hbs.html'),
+            { weeks: workbook.weeklyLog, statistics: workbook.statistics }
+        );
+    }
+};

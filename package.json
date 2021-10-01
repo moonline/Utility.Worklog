@@ -2,8 +2,9 @@
   "name": "worklog",
   "version": "0.1.0",
   "description": "Work time tracking tool",
-  "main": "src/main.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "electron src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,7 +17,9 @@
   "dependencies": {
     "handlebars": "^4.7.7",
     "moment": "^2.24.0",
-    "open": "^7.0.2",
-    "tmp": "^0.1.0"
+    "open": "^7.0.2"
+  },
+  "devDependencies": {
+    "electron": "^15.0.0"
   }
 }
