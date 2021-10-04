@@ -4,26 +4,8 @@
 
 You can track your working hours and public holidays in csv files and calculate your working hour balance with this tool. This allows you to easily version your worklog by git or edit syncronized worklog files on your phone by a simple text editor.
 
-To generate the worklog summary nodejs is required.
+![](documentation/worklog-screenshot.png)
 
-
-## Installation
-
-1. Install [Node.js](https://nodejs.org/en/)
-2. Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
-3. [Download & unzip latest release](https://github.com/moonline/Utility.Worklog/releases) or [Clone source](https://github.com/moonline/Utility.Worklog/archive/master.zip)
-4. Install dependencies 
-
-   ```sh
-   cd release-x.y
-   yarn install
-   ```
-
-5. Copy `worklog.desktop` to `~/.local/share/applications/worklog.desktop` and change the path for the worklog utility and the worklog csv file in the following line:
-
-```sh
-Exec=bash -c "node ~/Projects/Utility.Worklog ~/Documents/2019-worklog.csv"
-```
 
 ## Usage
 
@@ -55,8 +37,22 @@ Day,Quantity,Type
 }
 ```
 
-### Run
+
+## Development
+
+### Installation
+
+1. Install [Node.js](https://nodejs.org/en/)
+2. Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+3. [Clone source](https://github.com/moonline/Utility.Worklog/archive/master.zip)
+4. Install dependencies 
+
+   ```sh
+   cd release-x.y
+   yarn install
+   ```
+5. Start
 
 ```sh
-node "/path/to/Utility.Worklog" "~/Documents/Admin/2019-worklog.csv"
+npm start
 ```
