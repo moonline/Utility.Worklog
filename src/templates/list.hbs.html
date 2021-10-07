@@ -1,80 +1,93 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Worklog</title>
-        <meta charset="utf-8" />
-        <!-- Latest compiled and minified CSS -->
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"
-        />
+	<head>
+		<title>Worklog</title>
+		<meta charset="utf-8" />
+		<!-- Latest compiled and minified CSS -->
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			crossorigin="anonymous"
+		/>
 
-        <style>
-            .content {
-                padding: 0.5rem;
-            }
-           .content.summary {
-                background: steelblue;
-                color: white;
-            }
-            .content.summary table {
-                margin-bottom: 0;
-            }
+		<style>
+			html, body, .base {
+				height: 100%;
+				overflow: hidden;
+			}
+			.base {
+				display: flex;
+    			flex-direction: column;
+			}
+			.content {
+				padding: 0.5rem;
+			}
+		   .content.summary {
+				background: steelblue;
+				color: white;
+			}
+			.content.summary table {
+				margin-bottom: 0;
+			}
+			.content.details {
+				overflow-y: scroll;
+			}
 
-            .day.Public.holiday {
-                background: MediumSeaGreen;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="content summary">
-            <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th>Balance</th>
-                        {{#each statistics.dayTypes}}
-                            <th>{{@key}}</th>
-                        {{/each}}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{statistics.balance}}</td>
-                        {{#each statistics.dayTypes}}
-                            <td>{{this}}</td>
-                        {{/each}}                
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+			.day.Public.holiday {
+				background: MediumSeaGreen;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="base">
+			<div class="content summary">
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Balance</th>
+							{{#each statistics.dayTypes}}
+								<th>{{@key}}</th>
+							{{/each}}
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{statistics.balance}}</td>
+							{{#each statistics.dayTypes}}
+								<td>{{this}}</td>
+							{{/each}}                
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-        <div class="content">
-            <table class="table table-condensed">
-                <tbody>
-                    {{#each weeks}}
-                    <tr>
-                        <th>Week {{@key}}
+			<div class="content details">
+				<table class="table table-condensed">
+					<tbody>
+						{{#each weeks}}
+						<tr>
+							<th>Week {{@key}}
 
-                        </th>
-                        {{#each this}}
-                        <td class="day {{this.type}}">
-                            <strong>
-                                {{this.day}}
-                                {{@key}}
-                            </strong><br />
-                            ({{this.type}})<br />
-                            {{this.debt}} / {{this.hours}}<br />
-                            <strong>
-                            {{this.balance}}
-                            </strong>
-                        </td>
-                        {{/each}}                
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-    </body>
+							</th>
+							{{#each this}}
+							<td class="day {{this.type}}">
+								<strong>
+									{{this.day}}
+									{{@key}}
+								</strong><br />
+								({{this.type}})<br />
+								{{this.debt}} / {{this.hours}}<br />
+								<strong>
+								{{this.balance}}
+								</strong>
+							</td>
+							{{/each}}                
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
 </html>

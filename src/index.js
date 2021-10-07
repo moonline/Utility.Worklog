@@ -52,7 +52,7 @@ class App {
 					}, {
 						id: 'reload',
 						label: 'Reload',
-						disabled: true,
+						enabled: false,
 						accelerator: 'CommandOrControl+R',
 						click: () => {
 							if (this.currentFile) {
@@ -70,7 +70,7 @@ class App {
 					{
 						id: 'openWorklogFile',
 						label: 'Edit worklog',
-						disabled: true,
+						enabled: false,
 						accelerator: 'CommandOrControl+E',
 						click: () => {
 							this.currentFile && Open(this.currentFile);
@@ -79,7 +79,7 @@ class App {
 					{
 						id: 'openWorklogDirectory',
 						label: 'Open containing directory',
-						disabled: true,
+						enabled: false,
 						accelerator: 'CommandOrControl+D',
 						click: () => {
 							this.currentFile && Open(Path.dirname(this.currentFile));
@@ -91,6 +91,13 @@ class App {
 		Menu.setApplicationMenu(this.menu);
 	}
 
+	setMenuItemStatus = () => {
+		const status = Boolean(this.currentFile);
+		this.menu.getMenuItemById('reload').enabled = status;
+		this.menu.getMenuItemById('openWorklogFile').enabled = status;
+		this.menu.getMenuItemById('openWorklogDirectory').enabled = status;
+	}
+
 	openFile = () => {
 		dialog.showOpenDialog({ properties: ['openFile'] })
 			.then(result => {
@@ -100,8 +107,7 @@ class App {
 						'data:text/html;charset=utf-8,' + encodeURI(this.controller.listAction(this.currentFile))
 					);
 
-					// TODO
-					// menu.getMenuItemById('reload').disabled = false;
+					this.setMenuItemStatus();
 				}
 			}).catch(error => {
 				console.error(error);
