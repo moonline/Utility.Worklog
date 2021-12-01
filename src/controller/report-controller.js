@@ -51,6 +51,13 @@ module.exports = {
             );
         }
 
+        indexAction = () => {
+            return this.render(
+                Path.join(__dirname, '../templates/index.hbs.html'),
+                {}
+            );
+        }
+
         render = (templatePath, data) => {
             const templateFileContent = FS.readFileSync(templatePath, 'utf-8');
             const template = Handlebars.compile(templateFileContent);

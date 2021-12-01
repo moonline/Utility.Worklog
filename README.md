@@ -11,29 +11,29 @@ You can track your working hours and public holidays in csv files and calculate 
 
 ### Example setup
 
-`~/Documents/Admin/2019-worklog.csv`:
+`~/Documents/Admin/2021-worklog.csv`:
 
 ```csv
 Day,Start,End,Project,Task
-01/01/19,09:00,12:00,Worklog utility,Basic worklog functionality
-01/01/19,13:00,18:00,Worklog utility,Calendar support
+01/01/21,09:00,12:00,Worklog utility,Basic worklog functionality
+01/01/21,13:00,18:00,Worklog utility,Calendar support
 ```
 
-`~/Documents/Admin/2019-worklog.calendar.csv`:
+`~/Documents/Admin/2021-worklog.calendar.csv`:
 
 ```csv
-# Type: Public holiday | Sick day | Holiday | Unpayed holiday
+# Type: Public holiday | Sick day | Holiday | Unpaid holiday | Unpaid leave
 Day,Quantity,Type
-02/01/19,1,Public holiday
+02/01/21,1,Public holiday
 ```
 
-`~/Documents/Admin/2019-worklog.config.json`:
+`~/Documents/Admin/2021-worklog.config.json`:
 
 ```json
 {
     "workingHoursPerDay": 8,
-    "startDay": "01/01/19",
-    "endDay": "31/01/19"
+    "startDay": "01/01/21",
+    "endDay": "31/01/21"
 }
 ```
 

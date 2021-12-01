@@ -37,6 +37,9 @@ class App {
 		});
 		this.currentFile;
 		this.controller = new ReportController();
+		this.mainWindow.loadURL(
+			'data:text/html;charset=utf-8,' + encodeURI(this.controller.indexAction())
+		);
 	}
 
 	createMenu = () => {
