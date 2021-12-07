@@ -17,6 +17,15 @@ Simply create a configuration file, a calendar file and the worklog file and ope
 
 Download installation package of the [latest release](https://github.com/moonline/Utility.Worklog/releases).
 
+#### Create AppImage launcher
+
+Copy AppImage file to `.local/bin/` in your home directory and copy the launcher `worklog-utility.desktop` to `.local/share/applications/`:
+
+```sh
+cp ~/Downloads/worklog-utility-0.1.0.AppImage ~/.local/bin/
+cp ~/Downloads/worklog-utility.desktop /home/tblaser/.local/share/applications/worklog-utility.desktop
+```
+
 ### Windows / Mac
 
 Build and pack executable from source by electron-builder using `yarn dist`.
@@ -62,10 +71,11 @@ Day,Quantity,Type
 3. [Clone source](https://github.com/moonline/Utility.Worklog/archive/master.zip)
 4. Install dependencies 
 
-   ```sh
-   cd release-x.y
-   yarn install
-   ```
+```sh
+cd release-x.y
+yarn install
+```
+
 5. Start
 
 ```sh
@@ -75,9 +85,7 @@ yarn start
 ### Create installation package
 
 ```sh
-yarn dist {PLATFORM}
-# example linux
-yarn dist --linux
+yarn dist
 ```
 
 You will find the corresponding packages in `dist`.
