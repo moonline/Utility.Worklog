@@ -1,4 +1,5 @@
 const File = require('./file');
+
 const DEFAULT_CONFIG = {
     'worklog': require('../../config/worklog.config.json'),
     'application': require('../../config/application.config.json')

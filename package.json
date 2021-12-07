@@ -1,22 +1,35 @@
 {
-  "name": "worklog",
+  "name": "worklog-utility",
   "version": "0.1.0",
-  "description": "Work time tracking tool",
-  "main": "src/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Working hours tracking tool",
+  "author": "Wasabi Developer",
+  "license": "Apache-2.0",
   "keywords": [
     "worklog",
     "time",
     "tracking"
   ],
-  "author": "Wasabi Developer",
-  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "worklog-utility",
+    "mac": {
+      "category": "work"
+    }
+  },
   "dependencies": {
     "handlebars": "^4.7.7",
     "moment": "^2.24.0",
-    "open": "^7.0.2",
-    "tmp": "^0.1.0"
+    "open": "^7.0.2"
+  },
+  "devDependencies": {
+    "electron": "^15.0.0",
+    "electron-builder": "^22.14.5"
   }
 }
