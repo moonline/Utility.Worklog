@@ -6,6 +6,21 @@ You can track your working hours and public holidays in csv files and calculate 
 
 ![](documentation/worklog-screenshot.png)
 
+Simply create a configuration file, a calendar file and the worklog file and open the worklog file:
+
+![](documentation/worklog-init-screenshot.png)
+
+
+## Installation
+
+### Linux (Appimage/Snap)
+
+Download installation package of the [latest release](https://github.com/moonline/Utility.Worklog/releases).
+
+### Windows / Mac
+
+Build and pack executable from source by electron-builder using `yarn dist`.
+
 
 ## Usage
 
@@ -54,5 +69,15 @@ Day,Quantity,Type
 5. Start
 
 ```sh
-npm start
+yarn start
 ```
+
+### Create installation package
+
+```sh
+yarn dist {PLATFORM}
+# example linux
+yarn dist --linux
+```
+
+You will find the corresponding packages in `dist`.
