@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Worklog Utility
-Exec=/bin/sh -c "~/.local/bin/worklog-utility-0.1.0.AppImage"
+Exec=/bin/sh -c "~/.local/bin/worklog-utility.AppImage"
 Icon=spreadsheet
 Comment=Worklog Utility
 Type=Application
