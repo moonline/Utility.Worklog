@@ -22,8 +22,8 @@ Download installation package of the [latest release](https://github.com/moonlin
 Copy AppImage file to `.local/bin/` in your home directory and copy the launcher `worklog-utility.desktop` to `.local/share/applications/`:
 
 ```sh
-mv ~/Downloads/worklog-utility-1.0.0.AppImage ~/.local/bin/worklog-utility.AppImage
-mv ~/Downloads/worklog-utility.desktop /home/tblaser/.local/share/applications/worklog-utility.desktop
+mv ~/Downloads/worklog-utility-1.0.1.AppImage ~/.local/bin/worklog-utility.AppImage
+mv ~/Downloads/worklog-utility.desktop ~/.local/share/applications/worklog-utility.desktop
 ```
 
 ### Windows / Mac
